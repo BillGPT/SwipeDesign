@@ -2,6 +2,9 @@
 
 SwipeDesign is an intuitive, easy-to-use UI design tool leveraging GPT-4 and Rust+WASM for seamless design iterations. It aims to simplify the design process by allowing users to create UI designs with simple left and right swipes, similar to browsing content on TikTok.
 
+## Demo v0.1.0
+![image](https://github.com/RevAtN/SwipeDesign/blob/main/v0.1.0.gif)
+
 ## Features
 
 - Intuitive user interface with left and right swipe gestures for quick design iterations
