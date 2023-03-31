@@ -58,6 +58,9 @@ SwipeDesign is an intuitive, easy-to-use UI design tool leveraging GPT-4 and Rus
 4. Start a local server to test the application
 ```python3 -m http.server 8000```
 
+## Notes
+To reduce testing costs, gpt-3.5-turbo is used by default, but gpt4 is more powerful and can be enabled by modifying the 'model' parameter in src/lib.rs.
+
 ## Contributing
 
 We welcome contributions to SwipeDesign! If you'd like to contribute, please follow these steps:
