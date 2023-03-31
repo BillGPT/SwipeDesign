@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WASM HTML Preview</title>
+    <style>
+        #wrapper {
+            display: flex;
+        }
+
+        #html-section {
+            flex: 1;
+        }
+
+        #preview-section {
+            flex: 1;
+            position: relative; /* 添加相对定位 */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(0.75); /* 缩放比例 */
+            transform-origin: 0 0; /* 缩放基准点 */
+        }
+
+    </style>
+    <script type="module">
+        import init from './pkg/SwipeDesign.js';
+        init();
+    </script>
+</head>
+
+<body>
+    <h1>WASM HTML Preview</h1>
+    <div>
+        <label for="api-key">API Key:</label>
+        <input type="text" id="api-key">
+    </div>
+    <div>
+        <label for="gpt4-prompt">GPT-4 Prompt:</label>
+        <input type="text" id="gpt4-prompt">
+        <button onclick="saveApiKey(); fetchGpt4Content();">Fetch GPT-4 Content</button>
+    </div>
+
+    <div id="wrapper">
+        <div id="html-section">
+            <h2>HTML Input</h2>
+            <textarea id="html-input" rows="50" cols="90" oninput="updatePreview()"></textarea>
+        </div>
+        <div id="preview-section">
+            <h2>Preview</h2>
+            <iframe id="preview" srcdoc=""></iframe>
+        </div>
+    </div>
+    <script>
+        async function updatePreview() {
+            const { update_html_preview } = await import('./pkg/SwipeDesign.js');
+            const html_input = document.getElementById("html-input");
+            const new_html = html_input.value;
+            update_html_preview(new_html, "preview");
+        }
+
+        async function fetchGpt4Content() {
+            const { fetch_gpt4_content } = await import('./pkg/SwipeDesign.js');
+            const api_key_input = document.getElementById("api-key");
+            const api_key = api_key_input.value;
+            const gpt4_prompt_input = document.getElementById("gpt4-prompt");
+            const gpt4_prompt = gpt4_prompt_input.value;
+            fetch_gpt4_content(gpt4_prompt, api_key);
+        }
+        function saveApiKey() {
+            const api_key_input = document.getElementById("api-key");
+            const api_key = api_key_input.value;
+            localStorage.setItem("api_key", api_key);
+        }
+
+        function loadApiKey() {
+            const api_key_input = document.getElementById("api-key");
+            const api_key = localStorage.getItem("api_key");
+            if (api_key) {
+                api_key_input.value = api_key;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadApiKey();
+        });
+    </script>
+</body>
+
+</html>

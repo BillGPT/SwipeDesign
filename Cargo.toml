@@ -1,0 +1,30 @@
+[package]
+name = "SwipeDesign"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1.7"
+wasm-bindgen-futures = "0.4"
+serde_json = "1.0"
+
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+    "Document",
+    "Element",
+    "HtmlElement",
+    "Window",
+    "HtmlIFrameElement",
+    "Request",
+    "RequestInit",
+    "Headers",
+    "Response",
+    "console",
+    "HtmlTextAreaElement",
+]
